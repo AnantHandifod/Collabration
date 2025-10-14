@@ -14,6 +14,10 @@ public final class LoginViewModel: ObservableObject {
         self.appState = appState
     }
 
+    public func attach(appState: AppState) {
+        self.appState = appState
+    }
+
     public func login() {
         error = nil
         guard !email.isEmpty, !password.isEmpty else {
@@ -21,7 +25,7 @@ public final class LoginViewModel: ObservableObject {
             return
         }
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in
             self?.isLoading = false
             self?.appState?.isAuthenticated = true
         }
