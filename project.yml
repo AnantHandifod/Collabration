@@ -1,0 +1,91 @@
+name: CollegeConnect
+options:
+  minimumXcodeGenVersion: 2.38.0
+  deploymentTarget:
+    iOS: "16.0"
+configs:
+  Debug: debug
+  Release: release
+settings:
+  base:
+    SWIFT_VERSION: 5.9
+    IPHONEOS_DEPLOYMENT_TARGET: 16.0
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 1.0.0
+
+targets:
+  CollegeConnect:
+    type: application
+    platform: iOS
+    sources:
+      - path: App/Sources
+    resources:
+      - path: App/Resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.CollegeConnect
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: CollegeConnect
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    dependencies:
+      - target: Core
+      - target: DesignSystem
+      - target: Auth
+      - target: Clubs
+      - target: Events
+      - target: Profile
+
+  Core:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Modules/Core/Sources
+
+  DesignSystem:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Modules/DesignSystem/Sources
+    dependencies:
+      - target: Core
+
+  Auth:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Modules/Auth/Sources
+    dependencies:
+      - target: Core
+      - target: DesignSystem
+
+  Clubs:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Modules/Clubs/Sources
+    dependencies:
+      - target: Core
+      - target: DesignSystem
+
+  Events:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Modules/Events/Sources
+    dependencies:
+      - target: Core
+      - target: DesignSystem
+
+  Profile:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Modules/Profile/Sources
+    dependencies:
+      - target: Core
+      - target: DesignSystem
